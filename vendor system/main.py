@@ -8,7 +8,7 @@ class vendor: # oop concept
             user = 'root',
             password = "",
             database='vendor',
-            port="3308"
+            port="3306"
         )
     cur = mydb.cursor() # loc
     def is_email_true(this,email):
