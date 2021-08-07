@@ -8,7 +8,7 @@ class vendor: # oop concept
             user = 'root',
             password = "",
             database='vendor',
-            port="3306"
+            port="3308"
         )
     cur = mydb.cursor() # loc
     def is_email_true(this,email):
@@ -97,6 +97,7 @@ class vendor: # oop concept
         print("6.exit")
 
 
+'''
 class admin(vendor):
     def login(this):
         username = input("Username :")
@@ -116,28 +117,27 @@ class admin(vendor):
     
 
 
-admin = admin()
+obj = admin()
+'''
+ven = vendor() # create obj
 
-if admin.login():
-    ven = vendor() # create obj
-    while True:
-        ven.show_option()
-        op = int(input("select :"))
-        if(op == 1):
-            ven.add_new_vendor()
-            input()
-        if(op == 2):
-            ven.delete_vendor()
-            input()
-        if(op == 3):
-            ven.show_vendor()
-            input()
-        if(op == 4):
-            ven.update_vendor()
-            input()
-        if(op == 5):
-            ven.show_specific_rec();
-        if(op == 6):
-            break
-else:
-    print("login fail")
+#if obj.login():
+while True:
+    ven.show_option()
+    op = int(input("select :"))
+    if(op == 1):
+        ven.add_new_vendor()
+        input()
+    if(op == 2):
+        ven.delete_vendor()
+        input()
+    if(op == 3):
+        ven.show_vendor()
+        input()
+    if(op == 4):
+        ven.update_vendor()
+        input()
+    if(op == 5):
+        ven.show_specific_rec();
+    if(op == 6):
+        break
