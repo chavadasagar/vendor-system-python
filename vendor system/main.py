@@ -5,8 +5,10 @@ import smtplib
 
 class vendor: # oop concept
 
-    username = "" 
-    password = ""
+    username = "" # add your gmail
+    password = "" # add your gmail password
+    
+    # turn on less secure app in google manage ac
 
 
     mydb = mysql.connector.connect(
