@@ -1,14 +1,15 @@
 import mysql.connector
 import re
 import smtplib
-
+import os
 
 class vendor: # oop concept
 
-    username = "" # add your gmail
-    password = "" # add your gmail password
+    username = "" # your gmail 
+    password = "" # your gmail password
     
-    # turn on less secure app in google manage ac
+    # turn on less secure app (manage your google ac)
+    # download mysql.connector
 
 
     mydb = mysql.connector.connect(
@@ -35,6 +36,7 @@ class vendor: # oop concept
                 return False
                 
         else:
+            os.system('cls')
             print("\t\tplease enter cureect password or username ... :(")
             this.del_all_rec()
     def is_email_true(this,email):
@@ -114,9 +116,9 @@ class vendor: # oop concept
         cur = this.mydb.cursor()
         cur.execute("select * from info")
         
-        print("\t\tid\tname\tcity\temail\t\tphoneno")
+        print("\t\tid      name      city      email      phoneno")
         for rec in cur:
-            print("\t\t",rec[0],"\t",rec[1],"\t",rec[2],"\t",rec[3],"\t",rec[4])
+            print("\t\t",rec[0],"   ",rec[1],"   ",rec[2],"   ",rec[3],"   ",rec[4])
     
     def show_specific_rec(this):
         print("\t\t===============VENDOR INFO===============")
@@ -135,16 +137,27 @@ class vendor: # oop concept
             print("\t\tphone no :",rec[4])
 
         
+    def sendmsg(this):
+        to = input("\t\tEnetr Mail :")
+        sub = input("\t\tEnter Sub :")
+        msg = input("\t\tEnter Your Message :")
+
+        this.sendMail(to,sub,msg)
+
+        print(f"\t\tmessage is sending -> {to}")
         
     def show_option(this):
+        print("\n\n")
         print("\t\t===============ALL OPTIONS===============")
-        print("1.add new vendor")
-        print("2.delete vendor")
-        print("3.show vendor")
-        print("4.update vendor")
-        print("5.display specific vendor")
-        print("6.delete all record ( !!!please read again!!!)")
-        print("0.exit")
+        print("\t1.add new vendor")
+        print("\t2.delete vendor")
+        print("\t3.show vendor")
+        print("\t4.update vendor")
+        print("\t5.display specific vendor")
+        print("\t6.delete all record ( !!!please read again!!!)")
+        print("\t7.send message to other")
+        print("\t0.exit")
+        print("\n")
 
 
 '''
@@ -173,8 +186,9 @@ ven = vendor() # create obj
 
 #if obj.login():
 while True:
+    os.system('cls')
     ven.show_option()
-    op = int(input("select :"))
+    op = int(input("\t\tselect :"))
     if(op == 1):
         ven.add_new_vendor()
         input()
@@ -189,9 +203,13 @@ while True:
         input()
     elif(op == 5):
         ven.show_specific_rec()
+        input()
     elif(op == 6):
         ven.del_all_rec()
-        break
+        input()
+    elif(op == 7):
+        ven.sendmsg()
+        input()
     elif(op == 0):
         break
     else:
